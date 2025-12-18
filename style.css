@@ -1,0 +1,238 @@
+:root {
+    --primary: #2b2b2b;
+    --accent-excel: #1D6F42; /* Excel Green */
+    --accent-word: #2B579A;  /* Word Blue */
+    --accent-ppt: #D24726;   /* PPT Orange */
+    --light-bg: #f4f4f4;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: var(--primary);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.logo span { color: var(--accent-excel); }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+/* Navigation Links Styling */
+.nav-links li a {
+    text-decoration: none;
+    color: var(--primary);
+    margin-left: 2rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative; /* Needed to position the line */
+    padding-bottom: 5px; /* Space between text and line */
+}
+
+/* The Underline (Hidden by default) */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0; /* Starts at 0 width */
+    height: 2px; /* Thickness of the line */
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-excel); /* Green color */
+    transition: width 0.3s ease; /* Animation speed */
+}
+
+/* Hover Effect: Expands width to 100% */
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* Optional: Change text color on hover too */
+.nav-links li a:hover {
+    color: var(--accent-excel);
+}
+.hamburger { display: none; cursor: pointer; }
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    padding: 0 20px;
+}
+
+.hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+.hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;}
+
+.btn {
+    padding: 10px 30px;
+    background: var(--accent-excel);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover { background: #155230; }
+
+/* Skills Section */
+.skills-section {
+    padding: 4rem 5%;
+    background: var(--light-bg);
+    text-align: center;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: var(--transition);
+}
+
+.skill-card:hover { transform: translateY(-5px); }
+.skill-card i { font-size: 3rem; margin-bottom: 1rem; }
+.skill-card ul { list-style: none; text-align: left; margin-top: 1rem; padding-left: 1rem; }
+.skill-card ul li { margin-bottom: 0.5rem; position: relative; }
+.skill-card ul li::before { content: "•"; color: #ccc; position: absolute; left: -1rem; }
+
+.excel i { color: var(--accent-excel); }
+.word i { color: var(--accent-word); }
+.ppt i { color: var(--accent-ppt); }
+
+/* Portfolio Section */
+.portfolio-section { padding: 4rem 5%; text-align: center; }
+
+.filter-buttons { margin: 2rem 0; }
+.filter-btn {
+    padding: 8px 20px;
+    margin: 0 5px;
+    border: 2px solid #ddd;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: var(--white);
+}
+
+.project-img {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem; /* space between image and project info */
+}
+.project-img i { font-size: 4rem; color: #555; opacity: 0.5; }
+
+/* When a real image is available for a project, show it responsively */
+.project-img img {
+    /* Keep thumbnail height fixed, avoid stretching when card grows wider */
+    height: 200px;    /* fixed visual height */
+    width: auto;      /* scale width to maintain aspect ratio */
+    max-width: 100%;  /* never overflow container */
+    object-fit: cover;
+    display: block;
+}
+
+.project-info { padding: 1.5rem; text-align: left; }
+.project-info h3 { margin-bottom: 0.5rem; }
+
+/* Footer */
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: #222;
+    color: #ccc;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; font-size: 1.5rem; }
+    .hero h1 { font-size: 2rem; }
+}
+
+/* Download Button Styling */
+.download-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.download-link:hover {
+    background-color: #555;
+}
+
+.download-link i {
+    margin-right: 5px;
+    /* Reset icon size for the button */
+    font-size: 0.9rem; 
+    color: #fff;
+}
+
